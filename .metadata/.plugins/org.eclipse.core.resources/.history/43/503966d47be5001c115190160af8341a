@@ -1,0 +1,15 @@
+package ejercicio1;
+
+public class Prueba {
+
+	public  int calcula ()
+	{
+	return 1+1;
+	}
+	public static void main (String [] argumentos)
+	{
+		Prueba prueba = new Prueba();
+		System.out.println (prueba.calcula());
+	}
+}
+
