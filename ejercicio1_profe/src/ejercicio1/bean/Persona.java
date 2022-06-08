@@ -1,4 +1,4 @@
-package ejercicio1;
+package ejercicio1.bean;
 
 //BEAN; JAVA BEAN; POJO 
 // Un clase sencilla de Java con sus métodos de acceso 
@@ -19,10 +19,10 @@ public class Persona implements Comparable<Persona>{
 
 
 
-	/*@Override
+	@Override
 	public String toString() {
 		return "Persona [nombre=" + nombre + ", edad=" + edad + "]";
-	}*/
+	}
 
 
 
@@ -64,6 +64,25 @@ public class Persona implements Comparable<Persona>{
 			resultado = this.nombre.compareTo(o.nombre);
 		
 		return resultado;
+	}
+	
+	@Override
+	public boolean equals(Object obj) {
+		boolean iguales = false;
+		
+			if (this == obj)
+			{
+				iguales = true;
+			} else if ( !(obj instanceof Persona))
+			{
+				iguales = false;
+			} else {
+				Persona p1 = (Persona)obj;
+				//si coinciden nombre y edad, de this y p1, son iguales
+				iguales = (this.edad == p1.edad) && (this.nombre.equals(p1.nombre));
+			}
+
+		return iguales;
 	}
 
 }

@@ -1,6 +1,6 @@
-package ejercicio1;
+package ejercicio1.bean;
 
-public class Alumno extends Persona{
+public class Alumno extends Persona {
 	private int nota;
 
 	public int getNota() {
@@ -24,14 +24,11 @@ public class Alumno extends Persona{
 		super();
 	}
 
-	/*@Override
+	@Override
 	public String toString() {
-		return "Alumno [nota=" + nota + ", toString()=" + super.toString() + ", getNombre()=" + getNombre()
-				+ ", getEdad()=" + getEdad() + "]";
-	}*/
+		String str_persona = super.toString();
+		str_persona = str_persona + " nota=" + nota;
+		return str_persona;
+	}
 
-	
-
-	
-	
 }

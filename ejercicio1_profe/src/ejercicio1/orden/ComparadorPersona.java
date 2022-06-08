@@ -1,6 +1,8 @@
-package ejercicio1;
+package ejercicio1.orden;
 
 import java.util.Comparator;
+
+import ejercicio1.bean.Persona;
 
 public class ComparadorPersona implements Comparator<Persona> {
 	
