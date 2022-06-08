@@ -8,16 +8,38 @@ public class Persona implements Comparable<Persona>{
 	
 	private String nombre;
 	private int edad;
+	private int id;
 	
+	private static int contador;
+	
+	static {
+		System.out.println("Esta sección se ejecuta sólo una vez");
+		System.out.println("La primera vez que se encuentra una"
+				+ "referencia en el código a esa clase");
+		Persona.contador = 0;
+	}
 	
 	
 	public Persona(String nombre, int edad) {
 		super();
 		this.nombre = nombre;
 		this.edad = edad;
+		Persona.contador = Persona.contador+1;
+		this.id = Persona.contador;
+	}
+
+	public Persona() {
+		// Constructor Por defecto
+		System.out.println("En el constrcutor de persona");
+		Persona.contador = Persona.contador+1;
+		this.id = Persona.contador;
 	}
 
 
+
+	public int getId() {
+		return id;
+	}
 
 	@Override
 	public String toString() {
@@ -50,11 +72,7 @@ public class Persona implements Comparable<Persona>{
 
 
 
-	public Persona() {
-		// TODO Auto-generated constructor stub
-		System.out.println("En el constrcutor de persona");
-	}
-
+	
 
 	//oreden natural - por nombre
 	@Override

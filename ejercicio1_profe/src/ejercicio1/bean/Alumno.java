@@ -1,7 +1,9 @@
 package ejercicio1.bean;
 
 public class Alumno extends Persona {
+
 	private int nota;
+	private TipoNota tipoNota;
 
 	public int getNota() {
 		return nota;
@@ -14,6 +16,7 @@ public class Alumno extends Persona {
 	public Alumno(String nombre, int edad, int nota) {
 		super(nombre, edad);
 		this.nota = nota;
+		this.tipoNota = TipoNota.traduceNota(nota);
 	}
 
 	public Alumno(String nombre, int edad) {
@@ -27,7 +30,9 @@ public class Alumno extends Persona {
 	@Override
 	public String toString() {
 		String str_persona = super.toString();
-		str_persona = str_persona + " nota=" + nota;
+		
+			str_persona = str_persona + " nota=" + nota + " TipoNota = " + tipoNota;
+
 		return str_persona;
 	}
 

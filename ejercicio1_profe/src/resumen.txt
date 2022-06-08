@@ -1,0 +1,19 @@
+CLASE - Objeto : Concepto - instancia/variable
+extends - Defino una relación de herencia
+implements - Obligo a una clase a definir los métodos de la INterfaz
+INTERFAZ - Descripción funciones
+this: en el consctructor, el NUEVO objeto
+	  en otro método, el objeto llamante
+static: Cuando está definido a nivel de Clase (no de objeto)
+List: Interfaz para listas
+ArrayList: si busco más que inserto
+LinkedLIst: si inserto más que busco
+Comparator: Interfaz para determinar el orden total
+Comparable: Interfaz para determinar el orden natural (interno)
+bean: Clase "simple" de Java que representa un dato, con el Constructor y los métodos de acceso
+Enum: Para definir tipos enumerados (dato oscila en un rango limitado de valores)
+equals: método object para definir la igualdad entre objetos de una misma clase
+toString: método object para obtener la representación textual de un objeto
+Object: "Padre" de todas clases de JAVA
+Polimorfismo: Capacidad de Java de llamar al método más concreto/específico dada una relación de Herencia
+	  
