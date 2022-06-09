@@ -1,6 +1,7 @@
 package ejercicio1.util;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -9,6 +10,7 @@ import java.util.Set;
 
 import ejercicio1.bean.Alumno;
 import ejercicio1.bean.Persona;
+import ejercicio1.bean.TipoNota;
 
 public class UtilColecciones {
 
@@ -116,6 +118,26 @@ public class UtilColecciones {
 			}
 		
 		return mapa_notas;
+	}
+	
+	public static TipoNota obtenerNotaModa(Map<Integer, List<Alumno>> mapaNotas) {
+		TipoNota tipoNotaModa = null;
+		int max_alumnos = 0; int max_nota = 0;
+		
+			Collection<List<Alumno>> coleccion = mapaNotas.values();
+			for (List<Alumno> l : coleccion)
+			{
+				if (l.size()>max_alumnos)
+				{
+					max_alumnos = l.size();
+					max_nota = l.get(0).getNota();
+				}
+			}
+		
+			System.out.println("NOTA MÁS REPE = " + max_nota);
+			tipoNotaModa = TipoNota.traduceNota(max_nota);
+		
+		return tipoNotaModa;
 	}
 	
 }

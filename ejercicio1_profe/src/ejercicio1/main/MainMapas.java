@@ -9,6 +9,7 @@ import java.util.Set;
 
 import ejercicio1.bean.Alumno;
 import ejercicio1.bean.Persona;
+import ejercicio1.bean.TipoNota;
 import ejercicio1.util.UtilColecciones;
 
 public class MainMapas {
@@ -46,6 +47,8 @@ public class MainMapas {
 		
 		Map<Integer, List<Alumno>> mapaNotas = UtilColecciones.obtenerMapaNotasAlumnos(la);
 		UtilColecciones.mostrarMapaNotasAlumnos(mapaNotas);
+		TipoNota tipoNota = UtilColecciones.obtenerNotaModa(mapaNotas);
+		System.out.println("LA NOTA MÁS REPE ES " + tipoNota);
 		
 	}
 
