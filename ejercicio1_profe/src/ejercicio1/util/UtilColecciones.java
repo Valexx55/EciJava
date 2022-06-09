@@ -1,6 +1,11 @@
 package ejercicio1.util;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 import ejercicio1.bean.Alumno;
 import ejercicio1.bean.Persona;
@@ -48,6 +53,69 @@ public class UtilColecciones {
 	
 		return esta;
 		
+	}
+	
+	public static void mostrarMapaPersonas (Map<Integer, Persona> mapa_personas)
+	{
+		Set<Integer> conjunto = mapa_personas.keySet();
+		Iterator<Integer> it = conjunto.iterator();
+		
+		System.out.println("RECORRO EL HASHMAP ENTERO");
+		while (it.hasNext())
+		{
+			Integer clave_actual = it.next();
+			Persona p = mapa_personas.get(clave_actual);
+			System.out.println(p.toString());
+		}
+	}
+	
+	public static void mostrarMapaNotasAlumnos (Map<Integer, List<Alumno>> mapaNotas)
+	{
+		Set<Integer> conjunto = mapaNotas.keySet();
+		Iterator<Integer> it = conjunto.iterator();
+		
+		
+		while (it.hasNext())
+		{
+			Integer clave_actual = it.next();
+			System.out.println("ALUMNOS CON NOTA " + clave_actual);
+			List<Alumno> la = mapaNotas.get(clave_actual);
+			System.out.println(la);
+		}
+	}
+	
+	//TODO haced un método que reciba una lista de alumnos
+	//y los devuelva agrupados por nota en un mapa
+	
+	//si existe esa nota en el mapa
+	//obtengo la lista, añado al alumno
+//si no
+	//creo nueva lista
+	//añado alumno a esa lista
+	//creo clave en el mapa
+	public static Map<Integer, List<Alumno>> obtenerMapaNotasAlumnos(List<Alumno> listaAlumnos) {
+		Map<Integer, List<Alumno>> mapa_notas = null;
+		
+			mapa_notas = new HashMap<Integer, List<Alumno>>();
+		
+			for (Alumno a : listaAlumnos)
+			{
+				List<Alumno> la = mapa_notas.get(a.getNota());
+				if (la!=null)
+				{
+					//ya existía
+					//mapa_notas.get(a.getNota()).add(a);
+					la.add(a);
+				}else {
+					//nueva nota
+					List<Alumno> lista_nueva = new ArrayList<Alumno>();
+					lista_nueva.add(a);
+					mapa_notas.put(a.getNota(), lista_nueva);
+					
+				}
+			}
+		
+		return mapa_notas;
 	}
 	
 }

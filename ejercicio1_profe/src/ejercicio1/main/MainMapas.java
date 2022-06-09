@@ -1,9 +1,15 @@
 package ejercicio1.main;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
+import ejercicio1.bean.Alumno;
 import ejercicio1.bean.Persona;
+import ejercicio1.util.UtilColecciones;
 
 public class MainMapas {
 	
@@ -27,7 +33,20 @@ public class MainMapas {
 		
 		Persona nueva = mapa_personas.get(5);
 		System.out.println("NUeva = " +nueva);
-	
+		
+		UtilColecciones.mostrarMapaPersonas(mapa_personas);
+		int nota_random = 0;
+		int edad_random = 0;
+		List<Alumno> la = new ArrayList<Alumno>();
+		for (int i = 0; i < 20; i++) {
+			edad_random = (int) (Math.random() * 100);
+			nota_random = (int) (Math.random() * 10);
+			la.add(new Alumno("alumno " + i, edad_random, nota_random));
+		}
+		
+		Map<Integer, List<Alumno>> mapaNotas = UtilColecciones.obtenerMapaNotasAlumnos(la);
+		UtilColecciones.mostrarMapaNotasAlumnos(mapaNotas);
+		
 	}
 
 }
