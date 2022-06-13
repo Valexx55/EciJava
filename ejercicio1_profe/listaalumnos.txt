@@ -1,0 +1,15 @@
+Persona [nombre=alumno 0, edad=79] nota=0 TipoNota = SUSPENSO
+Persona [nombre=alumno 1, edad=93] nota=7 TipoNota = NOTABLE
+Persona [nombre=alumno 2, edad=88] nota=0 TipoNota = SUSPENSO
+Persona [nombre=alumno 3, edad=68] nota=4 TipoNota = SUSPENSO
+Persona [nombre=alumno 4, edad=22] nota=5 TipoNota = APROBADO
+Persona [nombre=alumno 5, edad=78] nota=0 TipoNota = SUSPENSO
+Persona [nombre=alumno 6, edad=45] nota=2 TipoNota = SUSPENSO
+Persona [nombre=alumno 7, edad=49] nota=9 TipoNota = SOBRESALIENTE
+Persona [nombre=alumno 8, edad=50] nota=8 TipoNota = NOTABLE
+Persona [nombre=alumno 9, edad=25] nota=5 TipoNota = APROBADO
+Persona [nombre=alumno 10, edad=84] nota=2 TipoNota = SUSPENSO
+Persona [nombre=alumno 11, edad=61] nota=2 TipoNota = SUSPENSO
+Persona [nombre=alumno 12, edad=48] nota=9 TipoNota = SOBRESALIENTE
+Persona [nombre=alumno 13, edad=96] nota=4 TipoNota = SUSPENSO
+Persona [nombre=alumno 14, edad=6] nota=5 TipoNota = APROBADO

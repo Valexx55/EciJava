@@ -140,4 +140,19 @@ public class UtilColecciones {
 		return tipoNotaModa;
 	}
 	
+	public static List<Alumno> obtenerListaALumnos (int tamnio)
+	{
+		List<Alumno> listaAlumnos = new ArrayList<Alumno>();
+		Alumno alumno_aux = null;
+		int nota_random = 0;
+		int edad_random = 0;
+		for (int i = 0; i < tamnio; i++) {
+			edad_random = (int) (Math.random() * 100);
+			nota_random = (int) (Math.random() * 10);
+			alumno_aux = new Alumno("alumno " + i, edad_random, nota_random);
+			listaAlumnos.add(alumno_aux);
+		}
+		return listaAlumnos;
+	}
+	
 }
