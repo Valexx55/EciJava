@@ -1,5 +1,7 @@
 package ejercicio1.bean;
 
+import ejercicio1.exception.NotaException;
+
 public class Alumno extends Persona {
 
 	private int nota;
@@ -13,7 +15,7 @@ public class Alumno extends Persona {
 		this.nota = nota;
 	}
 
-	public Alumno(String nombre, int edad, int nota) {
+	public Alumno(String nombre, int edad, int nota) /*throws NotaException*/ {
 		super(nombre, edad);
 		this.nota = nota;
 		this.tipoNota = TipoNota.traduceNota(nota);

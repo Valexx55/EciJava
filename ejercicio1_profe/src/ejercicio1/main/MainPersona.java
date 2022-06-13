@@ -7,6 +7,7 @@ import java.util.List;
 
 import ejercicio1.bean.Alumno;
 import ejercicio1.bean.Persona;
+import ejercicio1.exception.NotaException;
 import ejercicio1.orden.ComparadorPersona;
 import ejercicio1.util.UtilColecciones;
 
@@ -44,7 +45,12 @@ public class MainPersona {
 			edad_random = (int) (Math.random() * 100);
 			personaaux = new Persona("persona " + i, edad_random); 
 			nota_random = (int) (Math.random() * 10);
-			alumno_aux = new Alumno("alumno " + i, i + 30, nota_random);
+			try {
+				alumno_aux = new Alumno("alumno " + i, i + 30, nota_random);
+			} catch (NotaException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			listaPersona.add(personaaux);
 			listaPersona.add(alumno_aux);
 		}

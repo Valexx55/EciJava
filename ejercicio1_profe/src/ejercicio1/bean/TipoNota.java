@@ -1,11 +1,12 @@
 package ejercicio1.bean;
 
+import ejercicio1.exception.NotaException;
 
 //El Enum es el tipo óptimo cuando el valor de un dato
 //oscila en un rango limitado de valores
 public enum TipoNota {SOBRESALIENTE, NOTABLE, BIEN, APROBADO, SUSPENSO;
 	
-	public static TipoNota traduceNota (int nota)
+	public static TipoNota traduceNota (int nota) throws NotaException
 	{
 		TipoNota tipoNotaDevuelto = null;
 		
@@ -25,6 +26,9 @@ public enum TipoNota {SOBRESALIENTE, NOTABLE, BIEN, APROBADO, SUSPENSO;
 			case 2:
 			case 1:
 			case 0: tipoNotaDevuelto = TipoNota.SUSPENSO;
+			break;
+			default: //si no coincidimos con ninguno de las anteriores
+				throw new NotaException();
 			}
 		
 		
