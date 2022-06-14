@@ -15,6 +15,9 @@ public class MainFicheros {
 		List<Alumno> la = UtilColecciones.obtenerListaALumnos(15);
 		
 		UtilFicheros.escribirListaAlumnos(la, "listaalumnos.txt");
+		la = UtilFicheros.cargarAlumnos("listapropiedades.txt");
+		
+		System.out.println("lista cargada = " + la);
 	}
 
 }
