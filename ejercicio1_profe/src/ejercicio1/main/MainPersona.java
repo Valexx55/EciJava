@@ -64,6 +64,14 @@ public class MainPersona {
 		UtilColecciones.mostrarListaPersonas(listaPersona);
 		
 		listaPersona.sort(new ComparadorPersona());
+		listaPersona.sort ((a,b)//paramétros de entrada
+				->
+				{//inicio
+					return (a.getEdad()-b.getEdad());
+				}//fin
+			);
+		
+		
 		System.out.println("\n\n Mostrando por orden de EDAD - orden total");
 		UtilColecciones.mostrarListaPersonas(listaPersona);
 		
