@@ -37,10 +37,19 @@ public class UtilColeccionesStream {
 	
 	public static void mostrarListaPersonas (List<Persona> lista_personas)
 	{
-		for (Persona p : lista_personas) {
-			
-			System.out.println(p.toString());
-		}
+//		for (Persona p : lista_personas) {
+//			
+//			System.out.println(p.toString());
+//		}
+		
+		lista_personas.forEach(
+				p -> 
+				{
+					p.toString();
+				}
+				);
+		
+		lista_personas.stream().filter(p -> (p instanceof Alumno)).count();
 		
 	}
 	
