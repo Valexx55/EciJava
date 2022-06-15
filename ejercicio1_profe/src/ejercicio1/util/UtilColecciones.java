@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.Set;
 
 import ejercicio1.bean.Alumno;
@@ -154,5 +155,52 @@ public class UtilColecciones {
 		}
 		return listaAlumnos;
 	}
+	
+	//TODO haced un método que reciba una lista de alumnos y devuelva el primero
+	//que tiene sobresaliente. contemplad que no haya ninguno y usar para ello
+	//la clase Optional
+	
+	public static Optional<Alumno> buscarPrimerAlumnoSobresalienteStream (List<Alumno> alumnos)
+	{
+	
+		Optional<Alumno> oa = Optional.empty();
+		
+			oa = alumnos.stream().filter(a -> TipoNota.traduceNota(a.getNota()).equals(TipoNota.SOBRESALIENTE)).findFirst();
+		
+		return oa;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	public static Optional<Alumno> buscarPrimerAlumnoSobresaliente (List<Alumno> alumnos)
+	{
+	
+		Optional<Alumno> oa = Optional.empty();
+		boolean encontrado = false;
+		
+			Iterator<Alumno> it = alumnos.iterator();
+			Alumno alumno_aux = null;
+			int nota_aux=0;
+			while (it.hasNext() && !encontrado)
+			{
+				alumno_aux = it.next();
+				nota_aux = alumno_aux.getNota();
+				encontrado = TipoNota.traduceNota(nota_aux).equals(TipoNota.SOBRESALIENTE);
+				if (encontrado)
+				{
+					oa =Optional.of(alumno_aux);
+				}
+			}
+		
+		return oa;
+	}
+	
+	
 	
 }

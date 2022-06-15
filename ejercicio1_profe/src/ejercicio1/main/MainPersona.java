@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Optional;
 
 import ejercicio1.bean.Alumno;
 import ejercicio1.bean.Persona;
@@ -110,7 +111,19 @@ public class MainPersona {
 		} else {
 			System.out.println("LA PERSONA no PERTENCE A LA LISTA");
 		}
-
+		
+		List<Alumno> la = UtilColecciones.obtenerListaALumnos(15);
+		System.out.println("MOSTRANDO LISTA ALUMNOS NOTAS");
+		System.out.println(la);
+		Optional<Alumno> oa = UtilColecciones.buscarPrimerAlumnoSobresaliente(la);
+		if (oa.isPresent())
+		{
+			Alumno alumno_encontrado = oa.get();
+			System.out.println(alumno_encontrado);
+		} else {
+			System.out.println("NO HAY NINGUNO de SOBRESALIENTE");
+		}
+		
 	}
 
 	
