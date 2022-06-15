@@ -65,7 +65,7 @@ public class MainCuento {
 
 		// escribo el cuento en el fichero de salida
 		if (lectura_propiedades_ok) {
-			try (BufferedWriter bw = new BufferedWriter(new FileWriter(new File(".\\midir\\" + p_outfile)))) {
+			try (BufferedWriter bw = new BufferedWriter(new FileWriter(new File(".\\midir\\" + p_outfile))); BufferedWriter bw2 = null) {
 				{
 					bw.write(p_start);
 					bw.newLine();//escribir un salto de línea
@@ -76,7 +76,7 @@ public class MainCuento {
 					bw.write(p_end);
 					bw.newLine();
 
-					bw.close();
+					//bw.close();// Al usar TRY CON RECURSOS, no es necesario cerrar
 				}
 
 			} catch (Exception e) {
