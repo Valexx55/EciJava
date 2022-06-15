@@ -7,6 +7,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.stream.Stream;
 
 import ejercicio1.bean.Alumno;
 import ejercicio1.bean.Persona;
@@ -15,24 +16,20 @@ import ejercicio1.bean.TipoNota;
 public class UtilColeccionesStream {
 
 	public static float calcularNotaMediaAlumno(List<Persona> listaP) {
-		float media = 0;
-		int nota_aux = 0;
-		float total_nota = 0;
-		int n_alumnos = 0;
-
-		for (Persona p : listaP) {
-			if (p instanceof Alumno a)// Pattern Matching java 14
-			{
-				nota_aux = a.getNota();
-				total_nota = total_nota + nota_aux;
-				n_alumnos = n_alumnos + 1;
-			}
-		}
-		if (n_alumnos > 0) {
-			media = total_nota / n_alumnos;
-		}
-
-		return media;
+		double media = 0;
+			
+		//1 me quedo con los alumnos 
+		//qué metodo de Stream puedo usar? - filter
+		
+		//2 me quedo con la nota de los alumnos
+		//map
+			media = listaP.stream()//chorro de personas
+			.filter(p -> p instanceof Alumno)//chorro de alumnos
+			.mapToInt(a -> ((Alumno) a).getNota())//chorro de notas de alumnos
+			.average()
+			.getAsDouble();//media - final-
+		
+		return (float)media;
 	}
 	
 	public static void mostrarListaPersonas (List<Persona> lista_personas)
@@ -49,7 +46,28 @@ public class UtilColeccionesStream {
 				}
 				);
 		
-		lista_personas.stream().filter(p -> (p instanceof Alumno)).count();
+		//lista_personas.stream().filter(p -> (p instanceof Alumno)).count();
+		
+	}
+	
+	//hacer un método, que sume 1 punto a la nota de todos los alumnos
+	public static List<Alumno> sumarPuntoAlumnos (List<Alumno> le)
+	{
+		List<Alumno> ls = null;
+		
+			Stream<Alumno> se = le.stream().map(alumno -> { 
+				int nota = alumno.getNota();
+					if (nota <10)
+					{
+						nota++;
+					}
+					alumno.setNota(nota);
+				return alumno;
+			});
+			
+			ls = se.toList();
+		
+		return ls;
 		
 	}
 	
@@ -60,9 +78,23 @@ public class UtilColeccionesStream {
 	{
 		boolean esta = false;
 	
-			esta = lista_personas.contains(p);//hace uso del equals
+			//intentead haced este con anyMatch
+			esta =lista_personas.stream().anyMatch(pe -> pe.equals(p));
 	
 		return esta;
+		
+	}
+	
+	public static boolean hayPersonasConNombresde4 (List<Persona> lista_personas)
+	{
+		boolean hay = false;
+	
+			//intentead haced este con anyMatch
+			hay = lista_personas.stream().anyMatch(
+					persona -> persona.getNombre().length()==4
+					);
+	
+		return hay;
 		
 	}
 	

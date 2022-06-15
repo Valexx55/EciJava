@@ -11,6 +11,7 @@ import ejercicio1.bean.Persona;
 import ejercicio1.exception.NotaException;
 import ejercicio1.orden.ComparadorPersona;
 import ejercicio1.util.UtilColecciones;
+import ejercicio1.util.UtilColeccionesStream;
 
 public class MainPersona {
 
@@ -123,6 +124,10 @@ public class MainPersona {
 		} else {
 			System.out.println("NO HAY NINGUNO de SOBRESALIENTE");
 		}
+		
+		List<Alumno> lista_notas_mas =  UtilColeccionesStream.sumarPuntoAlumnos(la);
+		System.out.println("MOSTRANDO LISTA ALUMNOS NOTAS+1");
+		System.out.println(lista_notas_mas);
 		
 	}
 

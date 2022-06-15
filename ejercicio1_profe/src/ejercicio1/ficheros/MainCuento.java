@@ -65,7 +65,9 @@ public class MainCuento {
 
 		// escribo el cuento en el fichero de salida
 		if (lectura_propiedades_ok) {
-			try (BufferedWriter bw = new BufferedWriter(new FileWriter(new File(".\\midir\\" + p_outfile))); BufferedWriter bw2 = null) {
+			//boolean de FileWriter, por defecto: false, crea fichero (si existe, sobreescribe) 
+			//si boolean true (append) añade al fichero exsitente
+			try (BufferedWriter bw = new BufferedWriter(new FileWriter(new File(".\\midir\\" + p_outfile),false)); BufferedWriter bw2 = null) {
 				{
 					bw.write(p_start);
 					bw.newLine();//escribir un salto de línea
