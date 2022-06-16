@@ -5,9 +5,7 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
-import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 import ejercicio1.bean.Alumno;
@@ -22,19 +20,11 @@ public class UtilFicheros {
 			}
 
 		} catch (Exception e) {
-			// TODO: handle exception
 			e.printStackTrace();
 		}
 
 	}
 
-	// TODO
-	// haced un método que reciba el nombre de un fichero
-	// y devuelva la lista de alumnos con la info extraída
-	// el fichero tiene el siguiente formato
-	// (linea1) nombre1, nombre2, nombre3, etc.
-	// (linea2) edad1, edad2, edad3, etc.
-	// (linea1) nota1, nota2, nota3, etc.
 
 	public static List<Alumno> cargarAlumnos(String nombre_fichero) {
 		List<Alumno> lista_alumnos = null;
@@ -48,7 +38,6 @@ public class UtilFicheros {
 			lineaNota = br.readLine();
 
 		} catch (Exception e) {
-			// TODO: handle exception
 			e.printStackTrace();
 		}
 		

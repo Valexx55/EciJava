@@ -2,7 +2,6 @@ package ejercicio1.main;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
 
@@ -18,7 +17,6 @@ public class MainPersona {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 
-		Persona persona = new Persona();
 		Alumno alumno = new Alumno();
 
 		if (alumno instanceof Persona) {
@@ -78,6 +76,9 @@ public class MainPersona {
 		UtilColecciones.mostrarListaPersonas(listaPersona);
 		
 		Collections.sort(listaPersona);
+		
+		//MainPersona mainPersona = new MainPersona();
+		//listaPersona.sort(mainPersona::comparar);
 		System.out.println("\n\n Mostrando por orden ALFABÉTICO - Nombre - orden natural");
 		UtilColecciones.mostrarListaPersonas(listaPersona);
 		

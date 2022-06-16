@@ -1,6 +1,5 @@
 package ejercicio1.bean;
 
-import ejercicio1.exception.NotaException;
 
 public class Alumno extends Persona {
 
