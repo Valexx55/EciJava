@@ -7,6 +7,7 @@ this: en el consctructor, el NUEVO objeto
 static: Cuando está definido a nivel de Clase (no de objeto)
 List: Interfaz para listas
 ArrayList: si busco más que inserto
+Iterator: Forma de recorrer una colección
 LinkedLIst: si inserto más que busco
 Comparator: Interfaz para determinar el orden total
 Comparable: Interfaz para determinar el orden natural (interno)
@@ -16,4 +17,21 @@ equals: método object para definir la igualdad entre objetos de una misma clase
 toString: método object para obtener la representación textual de un objeto
 Object: "Padre" de todas clases de JAVA
 Polimorfismo: Capacidad de Java de llamar al método más concreto/específico dada una relación de Herencia
-	  
+Map: Colección que almacena items en formato clave-valor
+Stream: Interfaz que ofrece un flujo de datos 
+Lambda: Función que implementa una Interfaz funcional de modo abreviado
+Relación Stream-Lambda: La mayoría de los métodos Stream admiten Lambdas como parámetro
+Referencia a métodos: Referencia abreviada a métodos usadas en expresiones lambda
+cuando puede deducirse los parámetros (System.out::println)
+Collector(interfaz) Collectors (Clase) Tipos que me permiten construir colecciones
+a partir de un Stream
+paquete io: File, FileReader/Writer, BufferedReader/Writer, InputStream/Output
+paquete nio: Path (tipo File moderno), Files métodos estáticos
+Excepciones: Throwable (padre) Runtime (Unchecked) try-catch-finally try con recursos
+Optional: "Huevo KINDER" para evitar nulos.
+Properties: Clase del API estándar para procesar ficheros de propiedades cómodamente
+var : inferencia de tipos
+algoritmos recursivos: caso base, caso recursivo
+Maven: gestión de dependencias vía pom/estructura estándar de un proyecto
+MÓDULO (JAVA9) : El módulo nos permite exportar como librería, un subconjunto de paquetes de un app	 
+se configura en el module-info de cada proyecto/app (opcional) 

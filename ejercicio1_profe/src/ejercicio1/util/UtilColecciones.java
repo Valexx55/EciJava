@@ -141,7 +141,7 @@ public class UtilColecciones {
 		return tipoNotaModa;
 	}
 	
-	public static List<Alumno> obtenerListaALumnos (int tamnio)
+	public static List<Alumno> obtenerListaALumnos (long tamnio)
 	{
 		List<Alumno> listaAlumnos = new ArrayList<Alumno>();
 		Alumno alumno_aux = null;

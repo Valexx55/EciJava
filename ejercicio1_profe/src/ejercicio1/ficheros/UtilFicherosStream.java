@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import ejercicio1.bean.Alumno;
+import ejercicio1.util.UtilColecciones;
 
 public class UtilFicherosStream {
 
@@ -30,6 +31,7 @@ public class UtilFicherosStream {
 		List<Alumno> lista_alumnos = null;
 		try {
 			Path p = Path.of(nombre_fichero);
+			//TODO: probar un fichero muy tocho
 			List<String> lineas = Files.readAllLines(p);//cada elemento de la lista es una linea
 			
 			String [] nombres = lineas.get(0).split(",");
@@ -47,10 +49,39 @@ public class UtilFicherosStream {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
+
 		
 		return lista_alumnos;
 	}
 
+	public static void crearFicheroMultiLineas (long nlineas, String nf)
+	{
+		
+		List<Alumno> la = UtilColecciones.obtenerListaALumnos(nlineas);
+		try {
+			Path p = Path.of(nf);
+			Files.write(p, la.stream().map(a->a.toString()).toList(), Charset.forName("UTF-8"));
+			
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	public static void leerFicheroMultilineas (String nf)
+	{
+		try {
+			Path p = Path.of(nf);
+			//TODO: probar un fichero muy tocho
+			List<String> lineas = Files.readAllLines(p);//cada elemento de la lista es una linea
+			
+			lineas.forEach(System.out::println);
+			
+		} catch (IOException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+	}
 	
 }
