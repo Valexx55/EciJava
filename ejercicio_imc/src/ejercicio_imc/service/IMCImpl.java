@@ -6,8 +6,13 @@ public class IMCImpl implements InterfazIMC {
 
 	@Override
 	public float calculaIMC(Persona persona) {
-		// TODO Auto-generated method stub
-		return 0;
+		
+		//IMC : PESO (KG) / ALTURA * ALTURA (M)
+		float resultado_imc = 0;
+		
+			resultado_imc = persona.getPeso()/(persona.getAltura()*persona.getAltura());
+		
+		return resultado_imc;
 	}
 
 }
