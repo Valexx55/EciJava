@@ -4,6 +4,7 @@ import java.util.Random;
 
 import org.apache.log4j.Logger;
 
+import ejercicio_imc.bean.ImcResultado;
 import ejercicio_imc.bean.Persona;
 import ejercicio_imc.service.IMCImpl;
 import ejercicio_imc.service.InterfazIMC;
@@ -28,8 +29,8 @@ public class MainImc {
 	    float peso = random.nextFloat(30, 180);
 	    p.setAltura(altura);
 	    p.setPeso(peso);
-	    float resultado = imc.calculaIMC(p);
-	    System.out.println("Resultado = " + resultado);
+	    ImcResultado imcResultado = imc.calculaIMC(p);
+	    System.out.println("Resultado = " + imcResultado);
 		
 		/*try {
 		    //INFERENCIA DE TIPOS - VAR

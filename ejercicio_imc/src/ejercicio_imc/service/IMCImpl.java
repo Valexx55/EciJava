@@ -1,18 +1,22 @@
 package ejercicio_imc.service;
 
+import ejercicio_imc.bean.ImcResultado;
 import ejercicio_imc.bean.Persona;
+import ejercicio_imc.bean.TipoIMC;
 
 public class IMCImpl implements InterfazIMC {
 
 	@Override
-	public float calculaIMC(Persona persona) {
+	public ImcResultado calculaIMC(Persona persona) {
 		
-		//IMC : PESO (KG) / ALTURA * ALTURA (M)
+		ImcResultado imcResultado = null;
 		float resultado_imc = 0;
 		
 			resultado_imc = persona.getPeso()/(persona.getAltura()*persona.getAltura());
+			TipoIMC imc_nom = TipoIMC.traduceIMC(resultado_imc);
+			imcResultado = new ImcResultado(persona.getPeso(), persona.getAltura(), resultado_imc, imc_nom, persona.getNombre());
 		
-		return resultado_imc;
+		return imcResultado;
 	}
 
 }
