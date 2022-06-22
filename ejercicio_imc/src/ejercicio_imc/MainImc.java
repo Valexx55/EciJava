@@ -1,11 +1,14 @@
 package ejercicio_imc;
 
+import java.sql.SQLException;
+import java.util.List;
 import java.util.Random;
 
 import org.apache.log4j.Logger;
 
 import ejercicio_imc.bean.ImcResultado;
 import ejercicio_imc.bean.Persona;
+import ejercicio_imc.repository.IMCDao;
 import ejercicio_imc.service.IMCImpl;
 import ejercicio_imc.service.InterfazIMC;
 
@@ -19,27 +22,37 @@ public class MainImc {
 	public static void main(String[] args) {
 		
 		
-		//TODO HACED UNA IMPLENTACIÓN Y UNA PRUEBA
-		//DEL TIPO public interface InterfazIMC 
-		
 	    InterfazIMC imc =  new IMCImpl();
+	    
 	    Persona p = new Persona();
 	    Random random = new Random();
 	    float altura = random.nextFloat(1.1f, 2.20f);
 	    float peso = random.nextFloat(30, 180);
 	    p.setAltura(altura);
 	    p.setPeso(peso);
+	    
 	    ImcResultado imcResultado = imc.calculaIMC(p);
 	    System.out.println("Resultado = " + imcResultado);
-		
-		/*try {
-		    //INFERENCIA DE TIPOS - VAR
-			var nombre = "MARTA";
-			log.debug("El nombre es = " + nombre);
-			args[0].length();
+	    
+	    IMCDao imcDao = new IMCDao();
+	    try {
+	    	List<ImcResultado> limc = imcDao.recuperarTodos();
+	    	if (limc.isEmpty())
+	    	{
+	    		log.debug("Lista resultados vacía");
+	    		imcDao.insertarImcResultado(imcResultado);
+	    	}
+	    	else {
+	    		log.debug("Lista recuperada");
+	    		log.debug(limc);
+	    	}
+			
 		} catch (Exception e) {
-			log.error("ERROR", e);
-		}*/
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
 	}
 
 }

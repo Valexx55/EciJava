@@ -33,7 +33,13 @@ public class IMCDao {
 			(?, ?, ?, ?, ?)
 			""";
 	
-	
+	/**
+	 * Método que recupera de la base de datos
+	 * todos los registros de la tabla imc_resultado
+	 * 
+	 * @return La lista con los resultados La lista vacía si no hubo resultados
+	 * @throws Exception de la base de datos
+	 */
 	public List<ImcResultado> recuperarTodos () throws Exception
 	{
 		List<ImcResultado> lista_imcs = null;
@@ -64,7 +70,7 @@ public class IMCDao {
 		return lista_imcs;
 	}
 	
-	public void insertarImcResultado (ImcResultado resultado)
+	public void insertarImcResultado (ImcResultado resultado) throws SQLException
 	{
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
@@ -81,6 +87,7 @@ public class IMCDao {
 				preparedStatement.execute();
 			} catch (SQLException e) {
 				log.error("Error en insertarImcResultado ()", e);
+				throw e;
 			}
 			finally {
 				Conexion.liberarRecursos(connection, preparedStatement, null);

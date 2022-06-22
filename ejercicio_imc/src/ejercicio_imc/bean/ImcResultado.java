@@ -70,6 +70,13 @@ public class ImcResultado {
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
+
+
+	@Override
+	public String toString() {
+		return "ImcResultado [id=" + id + ", peso=" + peso + ", estatura=" + estatura + ", imc_num=" + imc_num
+				+ ", imc_nom=" + imc_nom + ", nombre=" + nombre + "]";
+	}
 	
 	
 
