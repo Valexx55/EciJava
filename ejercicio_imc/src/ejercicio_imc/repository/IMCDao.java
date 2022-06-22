@@ -33,6 +33,11 @@ public class IMCDao {
 			(?, ?, ?, ?, ?)
 			""";
 	
+	private static final String RECUPERAR_RANGO_PESO = """
+            SELECT * FROM `mibd`.`imc_resultado`
+            WHERE peso >= ? and peso <= ?
+            """;
+	
 	/**
 	 * Método que recupera de la base de datos
 	 * todos los registros de la tabla imc_resultado
@@ -115,5 +120,48 @@ public class IMCDao {
 		return imcResultado;
 		
 	}
+	
+	//TODO haced un método en la IMCDao
+	//que nos devuelva una lista de resultados
+	//en un rango dado de peso
+	public List<ImcResultado> recuperarRangoPeso(float min_peso, float max_peso) throws Exception{
+
+        List<ImcResultado> list = null;
+        Connection connection = null;
+        PreparedStatement preparedStatement= null;
+        ResultSet resultSet = null;
+
+        try {
+
+             connection = Conexion.obtenerConexion();
+             preparedStatement =connection.prepareStatement(RECUPERAR_RANGO_PESO);
+
+             preparedStatement.setFloat(1, min_peso);
+             preparedStatement.setFloat(2, max_peso);
+
+             resultSet = preparedStatement.executeQuery();
+
+             list = new ArrayList<ImcResultado>();
+
+             while (resultSet.next()) {
+
+                  ImcResultado imcResultado = componerResultado(resultSet);
+                  list.add(imcResultado);
+             }
+
+        } catch (Exception e) {
+
+             log.error("Error al recuperar un registro", e);
+             throw e;
+
+        } finally {
+             Conexion.liberarRecursos(connection, null, null);
+        }         
+
+        return list;
+
+  }
+
+
 
 }
