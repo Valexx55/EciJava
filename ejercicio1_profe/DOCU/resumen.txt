@@ -35,3 +35,10 @@ algoritmos recursivos: caso base, caso recursivo
 Maven: gestión de dependencias vía pom/estructura estándar de un proyecto
 MÓDULO (JAVA9) : El módulo nos permite exportar como librería, un subconjunto de paquetes de un app	 
 se configura en el module-info de cada proyecto/app (opcional) 
+JDBC API ESTÁNDAR DE JAVA PARA CONECTARME A UNA BASE DE DATOS RELACIONAL
+CLASES DESTACADAS DEL API JDBC
+	-DriverManager: Inicia el driver y facilita las conexiónes
+	-Connection: La conexión (conversación) con la base de datos
+	-Statement: La instrucción que tiro por una conexión (query)
+	-PreparedStatement: Statemen parametrizado
+	-ResultSet: El resultado de un Stament (en caso de haber)
