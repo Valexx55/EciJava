@@ -7,8 +7,16 @@ public class Persona {
 	private float peso;
 	private float altura;
 	
+	private static int contador;
+	
+	static {
+		contador = 0;
+	}
+	
 	public Persona() {
 		// TODO Auto-generated constructor stub
+		contador ++;
+		this.id = contador;
 	}
 	
 	
@@ -44,6 +52,12 @@ public class Persona {
 	}
 	public void setAltura(float altura) {
 		this.altura = altura;
+	}
+
+
+	@Override
+	public String toString() {
+		return "Persona [id=" + id + ", nombre=" + nombre + ", peso=" + peso + ", altura=" + altura + "]";
 	}
 	
 	

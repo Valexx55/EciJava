@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Savepoint;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
@@ -84,9 +85,11 @@ public class IMCDao {
 	{
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
+		Savepoint sp = null;
 		
 			try {
 				connection = Conexion.obtenerConexion();
+				connection.setAutoCommit(false);
 				preparedStatement = connection.prepareStatement(INSERTAR_IMC_RES);
 				preparedStatement.setFloat(1, resultado.getPeso());
 				preparedStatement.setFloat(2, resultado.getEstatura());
@@ -94,12 +97,14 @@ public class IMCDao {
 				preparedStatement.setString(4, resultado.getImc_nom().name());
 				preparedStatement.setString(5, resultado.getNombre());
 				
-				preparedStatement.execute();
+				connection.commit();
 			} catch (SQLException e) {
 				log.error("Error en insertarImcResultado ()", e);
+				connection.rollback();
 				throw e;
 			}
 			finally {
+				//connection.commit();--util para uso con SavePoints
 				Conexion.liberarRecursos(connection, preparedStatement, null);
 			}
 		

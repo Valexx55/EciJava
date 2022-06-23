@@ -1,6 +1,13 @@
 package ejercicio_imc;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import java.util.stream.Stream;
@@ -23,7 +30,7 @@ public class MainImc {
 	public static void main(String[] args) {
 		
 		
-	    InterfazIMC imc =  new IMCImpl();
+	    /*InterfazIMC imc =  new IMCImpl();
 	    
 	    Persona p = new Persona();
 	    Random random = new Random();
@@ -31,6 +38,7 @@ public class MainImc {
 	    float peso = random.nextFloat(30, 180);
 	    p.setAltura(altura);
 	    p.setPeso(peso);
+	    p.setNombre("PEPE");*/
 	    
 //	    /*Stream.generate(Persona::new)
 //	    .peek(persona-> persona.setAltura(altura))
@@ -40,29 +48,25 @@ public class MainImc {
 //	    		Stream.generate(new Float (random.nextFloat(30, 180)))
 //	    		.t
 //	    
-	    ImcResultado imcResultado = imc.calculaIMC(p);
+	   /* ImcResultado imcResultado = imc.calculaIMC(p);
 	    System.out.println("Resultado = " + imcResultado);
 	    
 	    IMCDao imcDao = new IMCDao();
 	    try {
+	    
+	    	imcDao.insertarImcResultado(imcResultado);
 	    	List<ImcResultado> limc = imcDao.recuperarTodos();
-	    	if (limc.isEmpty())
-	    	{
-	    		log.debug("Lista resultados vacía");
-	    		imcDao.insertarImcResultado(imcResultado);
-	    	}
-	    	else {
-	    		log.debug("Lista recuperada");
-	    		log.debug(limc);
-	    	}
+	    	
+	    	log.debug("Lista recuperada");
+	    	log.debug(limc);
 			
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
+		}*/
 		
 		//sección Oscar
-	    try {
+	   /* try {
 	    	List<ImcResultado> limc = imcDao.recuperarRangoPeso(30,200);
 	    	
 	    	if (limc.isEmpty()) {
@@ -93,7 +97,75 @@ public class MainImc {
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}	 
+		}*/	 
+	    obtenerListaConStreams();
 	}
 
+
+	public static List<Persona> obtenerListaConStreams ()
+	{
+		List<Persona> lp = null;
+		
+		float max_peso = 200;
+		float min_peso = 40;
+		
+		float max_altura = 2.20f;
+		float min_altura = 1.20f;
+		
+		Random r = new Random ();
+		List<String> listanombres = listaNombres();
+		System.out.println(listanombres);
+		
+		 lp = Stream
+		.generate(Persona::new) // chorro Personas
+		.peek(p -> p.setAltura(r.nextFloat(min_altura, max_altura)))
+		.peek(p -> p.setPeso(r.nextFloat(min_peso, max_peso)))
+		.peek(p -> p.setNombre(listanombres.get(p.getId())))
+		.takeWhile(p-> p.getId()<20)
+		.toList();
+		 
+		 System.out.println("LISTA PERSONAS RANDOM = " + lp);
+		 return lp;
+	}
+	
+    public static List<String> listaNombres() {
+
+        List<String> listaNombres = null;
+
+        Path p = Path.of("nombres.txt");
+        try {
+			listaNombres = Files.readAllLines(p);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+        
+        return listaNombres;
+    }
+        
+        /*try (BufferedReader br = new BufferedReader(new FileReader(new File("nombres.txt")))) {
+
+             String linea = null;
+
+             while (linea != null) {
+
+                  linea = br.readLine();
+
+                  if (linea != null)
+
+                       listaNombres.add(linea);
+
+             }
+
+        } catch (Exception e) {
+
+             e.printStackTrace();
+
+        }
+
+
+
+        return listaNombres;
+
+    }*/
 }
