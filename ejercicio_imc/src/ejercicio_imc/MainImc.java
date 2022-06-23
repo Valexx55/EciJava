@@ -8,6 +8,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Random;
 import java.util.stream.Stream;
@@ -17,6 +18,7 @@ import org.apache.log4j.Logger;
 import ejercicio_imc.bean.ImcResultado;
 import ejercicio_imc.bean.Persona;
 import ejercicio_imc.repository.IMCDao;
+import ejercicio_imc.repository.IMCDao2;
 import ejercicio_imc.service.IMCImpl;
 import ejercicio_imc.service.InterfazIMC;
 
@@ -98,7 +100,27 @@ public class MainImc {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}*/	 
-	    obtenerListaConStreams();
+		
+		try {
+			
+			InterfazIMC imcservice = new IMCImpl();
+			IMCDao2 imcDao2 = new IMCDao2();
+			ImcResultado imcResultadoAux;
+		    List<Persona> lp =  obtenerListaConStreams();
+		    for (Persona p : lp)
+		    {
+		    	imcResultadoAux = imcservice.calculaIMC(p);
+		    	imcResultadoAux.setPersona(p);
+		    	//imcDao.insertarImcResultado(imcResultadoAux);
+		    }
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+			log.error("ERROR INSERTANDO LISTA PERSONAS", e);
+		}
+		
+	    
+	   
 	}
 
 
@@ -121,6 +143,7 @@ public class MainImc {
 		.peek(p -> p.setAltura(r.nextFloat(min_altura, max_altura)))
 		.peek(p -> p.setPeso(r.nextFloat(min_peso, max_peso)))
 		.peek(p -> p.setNombre(listanombres.get(p.getId())))
+		.peek(p -> p.setFecha_nac(new Date()))//naces hoy!
 		.takeWhile(p-> p.getId()<20)
 		.toList();
 		 

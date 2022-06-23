@@ -1,5 +1,7 @@
 package ejercicio_imc.bean;
 
+import java.util.Date;
+
 public class ImcResultado {
 	
 	private int id;
@@ -7,9 +9,45 @@ public class ImcResultado {
 	private float estatura;
 	private float imc_num;
 	private TipoIMC imc_nom;
-	private String nombre;
+	
+	private Persona persona;
+	private Date fecha;
 	
 	
+	
+	public ImcResultado(int id, float peso, float estatura, float imc_num, TipoIMC imc_nom, Persona persona,
+			Date fecha) {
+		super();
+		this.id = id;
+		this.peso = peso;
+		this.estatura = estatura;
+		this.imc_num = imc_num;
+		this.imc_nom = imc_nom;
+		this.persona = persona;
+		this.fecha = fecha;
+	}
+
+
+	public Persona getPersona() {
+		return persona;
+	}
+
+
+	public void setPersona(Persona persona) {
+		this.persona = persona;
+	}
+
+
+	public Date getFecha() {
+		return fecha;
+	}
+
+
+	public void setFecha(Date fecha) {
+		this.fecha = fecha;
+	}
+
+
 	public ImcResultado() {
 		// TODO Auto-generated constructor stub
 	}
@@ -22,7 +60,7 @@ public class ImcResultado {
 		this.estatura = estatura;
 		this.imc_num = imc_num;
 		this.imc_nom = imc_nom;
-		this.nombre = nombre;
+		//this.nombre = nombre;
 	}
 	
 	public ImcResultado(float peso, float estatura, float imc_num, TipoIMC imc_nom, String nombre) {
@@ -31,7 +69,7 @@ public class ImcResultado {
 		this.estatura = estatura;
 		this.imc_num = imc_num;
 		this.imc_nom = imc_nom;
-		this.nombre = nombre;
+		//this.nombre = nombre;
 	}
 	
 	public int getId() {
@@ -64,18 +102,12 @@ public class ImcResultado {
 	public void setImc_nom(TipoIMC imc_nom) {
 		this.imc_nom = imc_nom;
 	}
-	public String getNombre() {
-		return nombre;
-	}
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
-	}
 
 
 	@Override
 	public String toString() {
 		return "ImcResultado [id=" + id + ", peso=" + peso + ", estatura=" + estatura + ", imc_num=" + imc_num
-				+ ", imc_nom=" + imc_nom + ", nombre=" + nombre + "]";
+				+ ", imc_nom=" + imc_nom + "]";
 	}
 	
 	

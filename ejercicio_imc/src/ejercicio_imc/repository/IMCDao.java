@@ -95,8 +95,8 @@ public class IMCDao {
 				preparedStatement.setFloat(2, resultado.getEstatura());
 				preparedStatement.setFloat(3, resultado.getImc_num());
 				preparedStatement.setString(4, resultado.getImc_nom().name());
-				preparedStatement.setString(5, resultado.getNombre());
-				
+				//preparedStatement.setString(5, resultado.getNombre());
+				preparedStatement.execute();
 				connection.commit();
 			} catch (SQLException e) {
 				log.error("Error en insertarImcResultado ()", e);
