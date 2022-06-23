@@ -61,7 +61,39 @@ public class MainImc {
 			e.printStackTrace();
 		}
 		
-		
+		//sección Oscar
+	    try {
+	    	List<ImcResultado> limc = imcDao.recuperarRangoPeso(30,200);
+	    	
+	    	if (limc.isEmpty()) {
+	    		log.debug("La lista esta vacia");
+
+	    	}
+	    	else {
+	    		System.out.println(limc);
+	    	}
+	    	
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}	 
+	    
+	    //seccion Jose
+	    try {
+	    	 String nombre = imcDao.recuperarNombreMaxPeso();
+	    	 if (nombre!= null)
+	    	 {
+	    		 System.out.println("NOMBRE MAX PESO = " + nombre);
+	    	 } else 
+	    		 {
+	    		 System.out.println("No se ha encontrado ningun registro");
+	    	 }
+	    	
+	    	
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}	 
 	}
 
 }

@@ -38,6 +38,11 @@ public class IMCDao {
             WHERE peso >= ? and peso <= ?
             """;
 	
+	 private static final String RECUPERAR_NOMBRE_MAX_PESO = """
+				select max(nombre) from `mibd`.`imc_resultado` n1
+		where n1.`peso` = (select max(`peso`) from  `mibd`.`imc_resultado` n2);
+				""" ;
+	
 	/**
 	 * Método que recupera de la base de datos
 	 * todos los registros de la tabla imc_resultado
@@ -155,7 +160,7 @@ public class IMCDao {
              throw e;
 
         } finally {
-             Conexion.liberarRecursos(connection, null, null);
+             Conexion.liberarRecursos(connection, preparedStatement, resultSet);
         }         
 
         return list;
@@ -163,5 +168,37 @@ public class IMCDao {
   }
 
 
+	public String recuperarNombreMaxPeso () throws Exception
+	{
+		String nombre = null;
+        Connection connection = null;
+        Statement statment= null;
+        ResultSet resultSet = null;
+
+        try {
+
+             connection = Conexion.obtenerConexion();
+             statment =connection.createStatement();
+
+
+             resultSet = statment.executeQuery(RECUPERAR_NOMBRE_MAX_PESO);
+
+
+             if (resultSet.next()) {
+            	 nombre = resultSet.getString(1);
+                 
+             }
+
+        } catch (Exception e) {
+
+             log.error("Error al recuperar un registro", e);
+             throw e;
+
+        } finally {
+             Conexion.liberarRecursos(connection, statment, resultSet);
+        }         
+
+        return nombre;
+	}
 
 }
