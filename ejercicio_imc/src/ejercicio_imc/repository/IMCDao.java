@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.sql.Savepoint;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.apache.log4j.Logger;
@@ -148,6 +149,8 @@ public class IMCDao {
 
              preparedStatement.setFloat(1, min_peso);
              preparedStatement.setFloat(2, max_peso);
+             
+             
 
              resultSet = preparedStatement.executeQuery();
 
@@ -191,6 +194,13 @@ public class IMCDao {
 
              if (resultSet.next()) {
             	 nombre = resultSet.getString(1);
+            	 
+            	
+            	 //DATE JAVA2SQL para insertar
+            	 //new java.sql.Date(new Date().getTime());
+            	 //DATE SQL2JAVA para leer select
+            	 //new Date (resultSet.getDate(2).getTime());
+            	 
                  
              }
 

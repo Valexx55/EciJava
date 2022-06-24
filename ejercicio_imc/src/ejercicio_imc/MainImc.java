@@ -111,6 +111,7 @@ public class MainImc {
 		    {
 		    	imcResultadoAux = imcservice.calculaIMC(p);
 		    	imcResultadoAux.setPersona(p);
+		    	imcDao2.registrarResultado(imcResultadoAux);
 		    	//imcDao.insertarImcResultado(imcResultadoAux);
 		    }
 			
