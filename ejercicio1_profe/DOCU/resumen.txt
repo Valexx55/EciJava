@@ -42,3 +42,8 @@ CLASES DESTACADAS DEL API JDBC
 	-Statement: La instrucción que tiro por una conexión (query)
 	-PreparedStatement: Statemen parametrizado
 	-ResultSet: El resultado de un Stament (en caso de haber)
+INVERSIÓN DE CONTROL (IOC) 
+Yo no instancio un objeto, no llamo a new
+El entorno (contenedor/framework) lo hace por mí
+
+//
