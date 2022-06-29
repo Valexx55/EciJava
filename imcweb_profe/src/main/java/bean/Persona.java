@@ -28,6 +28,15 @@ public class Persona {
 		this.fecha_nac = fecha_nac;
 		this.lista_imcs = lista_imcs;
 	}
+	
+	public Persona(int id, String nombre, float peso, float altura, Date fecha_nac) {
+		super();
+		this.id = id;
+		this.nombre = nombre;
+		this.peso = peso;
+		this.altura = altura;
+		this.fecha_nac = fecha_nac;
+	}
 
 
 	public Date getFecha_nac() {
