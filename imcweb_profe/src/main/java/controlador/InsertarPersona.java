@@ -8,7 +8,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonSyntaxException;
 
+import bean.ImcInput;
 import bean.Persona;
 
 /**
@@ -17,34 +19,45 @@ import bean.Persona;
 @WebServlet("/InsertarPersona")
 public class InsertarPersona extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public InsertarPersona() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#HttpServlet()
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public InsertarPersona() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		String persona_json = request.getReader().readLine();
-		System.out.println("persona rx = " +persona_json);
-		Gson gson = new Gson ();
-		Persona p = gson.fromJson(persona_json, Persona.class);
-		System.out.println("Persona objeto = " + p);
-		// TODO INSERTAR PERSONA
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
+		try {
+
+			String persona_json = request.getReader().readLine();
+			System.out.println("persona rx = " + persona_json);
+			Gson gson = new Gson();
+			ImcInput p = gson.fromJson(persona_json, ImcInput.class);
+			System.out.println("Input rx objeto = " + p);
+			// TODO INSERTAR PERSONA
+		} catch (JsonSyntaxException e) {
+			// TODO: devolver un 400 error en la peticon
+		} catch (Exception e) {
+			// TODO: devolver un 500 error en la peticon
+		}
 	}
 
 }
