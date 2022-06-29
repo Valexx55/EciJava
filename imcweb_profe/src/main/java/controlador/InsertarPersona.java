@@ -7,6 +7,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.log4j.Logger;
+
 import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
 
@@ -20,6 +22,7 @@ import bean.Persona;
 public class InsertarPersona extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
+	private static Logger log = Logger.getLogger("mylog");
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
@@ -47,6 +50,7 @@ public class InsertarPersona extends HttpServlet {
 
 		try {
 
+			log.debug("Entrando en doPost");
 			String persona_json = request.getReader().readLine();
 			System.out.println("persona rx = " + persona_json);
 			Gson gson = new Gson();

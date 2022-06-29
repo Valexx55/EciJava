@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>FORMULARIO ALTA</title>
+<script>
+var xmlHttp = new XMLHttpRequest();
+
+function calculaIMC()
+{
+	var name = document.getElementById("nombre").value;
+	var kilos = document.getElementById("peso").value;
+	var metros = document.getElementById("estatura").value;
+	var idp = document.getElementById("idp").value;
+	
+	var persona = {
+		    nombre:name,
+		    peso:kilos,
+		    estatura: metros,
+		    id:idp
+		};
+	
+	
+	let imc_input = JSON.stringify(persona);
+	console.log (imc_input);
+	
+	
+	
+	
+	
+	xmlHttp.onreadystatechange = procesarEventos;
+	xmlHttp.open('POST', 'InsertarPersona', true); //indicamos como vamos a enviar los datos, en este caso con el metodo GET al archivo meses.php?num= el valor que le indiquemos en el textbox
+	xmlHttp.setRequestHeader('Content-Type', 'application/json');
+	xmlHttp.send(imc_input);
+	
+	
+	
+}
+
+function procesarEventos()
+{
+   
+  if(xmlHttp.readyState==4) //ya hemos recibido respuesta del servidor
+  {
+      if(xmlHttp.status==200)// y el código de la cabecera http es bueno
+          {
+			alert("Registro insertado correctamente");
+			
+			
+          }
+      else
+      {
+          alert("Ha ocurrido un error"+ xmlHttp.status +":"+ xmlHttp.statusText);
+      }
+  }
+
+}
+
+
+
+</script>
+</head>
+
+
+<body>
+
+<table>
+	<tr><td><input placeholder="Id" type="number" id="idp" ></td></tr>
+	<tr><td><input placeholder="Nombre" type="text" id="nombre" ></td></tr>
+	<tr><td><input placeholder="Peso" type="number" id="peso" step=".01" min="45" ></td></tr>
+	<tr><td><input placeholder="Altura" type="number" step=".01" min="1.50" id="estatura" ></td></tr>
+	<tr><td><input type="submit" value="Calcula IMC" onclick="calculaIMC()"></td></tr>
+</table>
+ 
+
+</body>
+</html>
