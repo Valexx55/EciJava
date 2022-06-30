@@ -1,12 +1,6 @@
 package controlador;
 
-
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -17,50 +11,46 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.log4j.Logger;
 
-import com.google.gson.Gson;
-
 import bean.ImcResultado;
-import bean.TipoIMC;
 import servicio.ImcService;
 
 /**
- * Servlet implementation class ObtenerPersonasEnRango
+ * Servlet implementation class ObtenerPersonasEnRangoJSP
  */
-//http://localhost:8080/ObtenerPersonasEnRango?min=5&max=100
-@WebServlet("/ObtenerPersonasEnRango")
-public class ObtenerPersonasEnRango extends HttpServlet {
-	
-	private static final long serialVersionUID = 1L;	
-	
+@WebServlet("/ObtenerPersonasEnRangoJSP")
+public class ObtenerPersonasEnRangoJSP extends HttpServlet {
+	private static final long serialVersionUID = 1L;
 	private static Logger log = Logger.getLogger("mylog");
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ObtenerPersonasEnRango() {
+    public ObtenerPersonasEnRangoJSP() {
         super();
+        // TODO Auto-generated constructor stub
     }
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		String min = request.getParameter("min");
 		String max = request.getParameter("max");
 		
 		try {
 			ImcService imcService = new ImcService();
-			List<ImcResultado> lis =  imcService.recuperarRangoPeso(Float.parseFloat(min), Float.parseFloat(max));
-			Gson gson = new Gson();
-			String lista_json = gson.toJson(lis);//serializar a JSON
-			response.setContentType("application/json;charset=UTF-8");//tipo MIME
-			response.getWriter().print(lista_json);
+			List<ImcResultado> lis =  imcService.recuperarRangoPeso(Float.parseFloat(min), Float.parseFloat(max));									
+			
+			request.setAttribute("listap", lis);
+			request.getRequestDispatcher("lista_personas_rango.jsp").forward(request, response);
+			
+			
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
-		
+			log.error(e);
+		}		
 	}
 
 	/**
@@ -70,7 +60,5 @@ public class ObtenerPersonasEnRango extends HttpServlet {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
-	
-		
 
 }

@@ -1,0 +1,30 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+	pageEncoding="ISO-8859-1"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>LISTADO PERSONAS</title>
+</head>
+<body>
+	<table>
+		<tr>
+			<th>ID</th>
+			<th>peso</th>			
+			<th>Estatura</thd>
+			<th>IMC NUM</thd>			
+			<th>IMC NOM</thd>
+		</tr>
+		<c:forEach items="${listap}" var="imcResultado">
+			<tr>			
+				<td>${imcResultado.id}</td>					
+				<td>${imcResultado.peso}</td>				
+				<td>${imcResultado.estatura}</td>				
+				<td>${imcResultado.imc_num}</td>
+				<td>${imcResultado.imc_nom}</td>								
+			</tr>			
+		</c:forEach>
+	</table>
+</body>
+</html>
