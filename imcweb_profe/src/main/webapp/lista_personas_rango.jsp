@@ -8,7 +8,14 @@
 <title>LISTADO PERSONAS</title>
 </head>
 <body>
+	<!-- https://stackoverflow.com/a/1890462/4067559 
+	resumen de acceso a datos
+	desde JSP -->
 	FECHA INICIO SERVICIO ${HORA_INICIO} <br>
+	${param.max} <br>
+	${requestScope.max}  <br>
+	${applicationScope.HORA_INICIO} <br>
+	
 	<c:if test="${listap.size() > 0}">
 	Listado de personas entre ${min} y ${max} kilos
 	<table>
