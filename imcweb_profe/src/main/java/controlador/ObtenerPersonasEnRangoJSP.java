@@ -40,7 +40,7 @@ protected void doGet(HttpServletRequest request, HttpServletResponse response) t
 		log.debug( "FECHA INICIO SERVLET " +fecha_inicio_servidor);
 		
 		String min = request.getParameter("min");
-		String max = request.getParameter("max");
+		String max = request.getParameter("ma");
 		
 		try {
 			ImcService imcService = new ImcService();
@@ -56,6 +56,8 @@ protected void doGet(HttpServletRequest request, HttpServletResponse response) t
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			log.error(e);
+			//request.getRequestDispatcher("error.jsp").forward(request, response);
+			response.sendRedirect("error.jsp");
 		}		
 	}
 

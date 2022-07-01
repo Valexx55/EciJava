@@ -11,10 +11,11 @@
 	<!-- https://stackoverflow.com/a/1890462/4067559 
 	resumen de acceso a datos
 	desde JSP -->
-	FECHA INICIO SERVICIO ${HORA_INICIO} <br>
+	FECHA INICIO SERVICIO ${HORA_INICIO}  <br><br>
 	${param.max} <br>
+	${param.min} <br>
 	${requestScope.max}  <br>
-	${applicationScope.HORA_INICIO} <br>
+	${applicationScope.HORA_INICIO} <br><br><br>
 	
 	<c:if test="${listap.size() > 0}">
 	Listado de personas entre ${min} y ${max} kilos
