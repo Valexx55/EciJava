@@ -1,6 +1,7 @@
 package controlador;
 
 import java.io.IOException;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -35,6 +36,9 @@ public class ObtenerPersonasEnRangoJSP extends HttpServlet {
 	 */
 protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		Date fecha_inicio_servidor = (Date) getServletContext().getAttribute("HORA_INICIO");
+		log.debug( "FECHA INICIO SERVLET " +fecha_inicio_servidor);
+		
 		String min = request.getParameter("min");
 		String max = request.getParameter("max");
 		
@@ -43,6 +47,8 @@ protected void doGet(HttpServletRequest request, HttpServletResponse response) t
 			List<ImcResultado> lis =  imcService.recuperarRangoPeso(Float.parseFloat(min), Float.parseFloat(max));									
 			
 			request.setAttribute("listap", lis);
+			request.setAttribute("max", max);
+			request.setAttribute("min", min);
 			request.getRequestDispatcher("lista_personas_rango.jsp").forward(request, response);
 			
 			
