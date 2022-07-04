@@ -45,5 +45,23 @@ CLASES DESTACADAS DEL API JDBC
 INVERSIÓN DE CONTROL (IOC) 
 Yo no instancio un objeto, no llamo a new
 El entorno (contenedor/framework) lo hace por mí
-
 //
+Ámbito JEE.- Espacios de memoria "saquitos" diferenciados
+por su tiempo de vida.- Ordenados de menor a mayor duración
+tenemos:
+
+	- REQUEST: Crea y destruye en cada petición:
+		Transacción por Petición
+		Transaction per Request
+	- SESSION: Se crea
+		mediante request. getSession () / (true) 
+		se detruye
+			- porque expira
+			- al ejecutar invalidate (explícitamente)
+		Sirve para mantener una conversación, 
+		etiquetándola con un ID que va y viene
+		y además está asociada a un objeto en el lado
+		del servidor
+	- CONTEXTO/APLICACIÓN: Se crea al levantar la app 
+	en el contenedor y se destruye al detenerse	
+	

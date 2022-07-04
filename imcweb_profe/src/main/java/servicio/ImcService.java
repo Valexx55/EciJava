@@ -45,5 +45,16 @@ public class ImcService {
 
 		return imcResultado;
 	}
+	   public List<ImcResultado> recuperarTodos () throws Exception
+		{
+
+	        List<ImcResultado> list = null;
+	        	
+	        	ImcRepository imcRepository = new ImcRepository();
+	        	list = imcRepository.recuperarTodos();
+	 
+	        return list;
+
+		}
 
 }

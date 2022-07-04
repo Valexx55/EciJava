@@ -6,6 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Savepoint;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -25,6 +26,9 @@ public class ImcRepository {
 	private static final String RECUPERAR_RANGO_PESO = """
 			SELECT * FROM `mibd`.`imc_resultado`
 			WHERE peso >= ? and peso <= ?
+			""";
+	private static final String RECUPERAR_TODOS = """
+			SELECT * FROM `mibd`.`imc_resultado`
 			""";
 	private static final String INSERTAR_PERSONA = """
 			INSERT INTO personas
@@ -210,5 +214,30 @@ public class ImcRepository {
 		return existe;
 	}
 
+	
+	public List<ImcResultado> recuperarTodos() throws SQLException {				
+		List<ImcResultado> lista_imc = null;
+		Connection connection = null;
+		Statement statement = null;
+		ResultSet resultSet = null;
+		
+		try {
+			connection = Pool.getConnection();
+			statement = connection.createStatement();
+			resultSet = statement.executeQuery(RECUPERAR_TODOS);
+			lista_imc=  new ArrayList<>();
+			while (resultSet.next()){								
+				lista_imc.add(componerResultado(resultSet));				
+			}
+			
+		} catch (Exception e) {
+			log.error("error al recuperar los imc  --> " + e);			
+			throw e;
+		}finally {
+			Pool.liberarRecursos(connection, statement, resultSet);
+		}
+		
+		return lista_imc;
+	}
 
 }
