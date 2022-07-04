@@ -13,13 +13,13 @@ import javax.servlet.http.HttpFilter;
 /**
  * Servlet Filter implementation class FiltroRangoBD
  */
-@WebFilter("/ObtenerPersonasEnRangoJSON")
-public class FiltroRangoBD extends HttpFilter implements Filter {
+@WebFilter("/ObtenerPersonasEnRangoJSON2")
+public class FiltroRangoContexto extends HttpFilter implements Filter {
        
     /**
      * @see HttpFilter#HttpFilter()
      */
-    public FiltroRangoBD() {
+    public FiltroRangoContexto() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -45,7 +45,7 @@ public class FiltroRangoBD extends HttpFilter implements Filter {
 		long tfinal = System.currentTimeMillis();
 		System.out.println("PASA POR AQUÍ A LA VUELTA");
 		long ttotal = tfinal-tactual;
-		System.out.println("MS totales BD = " +ttotal );
+		System.out.println("MS totales contexto = " +ttotal );
 	}
 
 	/**
