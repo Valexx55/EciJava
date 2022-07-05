@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+            http://www.springframework.org/schema/beans
+            http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+	<!-- <bean id="proceso" class="edu.tech.val.courses.jee.Calcula" />  -->
+	<bean id="proceso" class="edu.tech.val.courses.jee.Ordenamiento" /> 
+
+	<bean id="servis" class="edu.tech.val.courses.jee.Servicio">
+		<constructor-arg ref="proceso" />
+	</bean>
+
+</beans>
