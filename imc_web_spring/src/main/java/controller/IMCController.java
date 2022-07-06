@@ -28,6 +28,7 @@ public class IMCController {
 		return "inicio";
 	}
 
+	//http://localhost:8080/imc_web_spring/imc POST
 	@RequestMapping(path = "/imc", method = RequestMethod.POST)
 	public String imc(@RequestBody Persona p, Model m) {
 
