@@ -15,7 +15,7 @@ public class App
 		ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
 		
 		HelloWorldService obj = (HelloWorldService) context.getBean("helloWorldService");
-		obj.setName("Spring 3.2.3");
+		//obj.setName("Spring 3.2.3");
 		String message = obj.sayHello();
 		System.out.println(message);
 		}
