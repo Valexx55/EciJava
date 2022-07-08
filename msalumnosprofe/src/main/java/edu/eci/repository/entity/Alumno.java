@@ -11,6 +11,11 @@ import javax.persistence.PrePersist;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 
 @Entity//esta clase está asociada a un tabla
 @Table(name = "alumnos")
@@ -21,12 +26,17 @@ public class Alumno {
 	private Long id;
 	
 	@Column(length = 50)
+	@Size(min = 3, max = 15)
 	private String nombre;
 	
+	@NotEmpty
 	private String apellido;
 	
+	@Min(0)
+	@Max(130)
 	private int edad;
 	
+	@Email
 	private String email;
 	
 	@Column(name = "creado_en")//especificamos un nombre de columna distinto
