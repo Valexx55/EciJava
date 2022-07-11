@@ -61,4 +61,32 @@ public class AlumnoServiceImpl implements AlumnoService {
 		return alumnno_modificado;
 	}
 
+	@Override
+	@Transactional(readOnly = true)
+	public Iterable<Alumno> findByNombreLike(String patron) {
+		
+		return this.alumnoRepository.findByNombreLike("%"+patron+"%");
+	}
+	
+	@Override
+	@Transactional(readOnly = true)
+	public Iterable<Alumno> findByEdadBetween(int edad_min, int edad_max) {
+		
+		return this.alumnoRepository.findByEdadBetween(edad_min, edad_max);
+	}
+
+	@Override
+	@Transactional(readOnly = true)
+	public Iterable<Alumno> busquedaPorNombreOApellidoNativa(String patron) {
+		
+		return this.alumnoRepository.busquedaPorNombreOApellidoNativa(patron);
+	}
+
+	@Override
+	@Transactional //AUNQUE EL PROC NO SEA UNA OPERACIÓN DE ESCRITURA, HAY QUE PONERLO COMO SI LO FUERA READONLY A FALSE
+	public Iterable<Alumno> procediminetoAlumnosAltaHoy() {
+		
+		return this.alumnoRepository.procediminetoAlumnosAltaHoy();
+	}
+
 }

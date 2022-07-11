@@ -154,5 +154,60 @@ public class AlumnoController {
 
 		return responseEntity;
 	}
+	
+	@GetMapping("/buscarPorNombreLike/{patron}") // http://localhost:8081/alumno/buscarPorNombreLike/p GET
+	public ResponseEntity<?> listarAlumnosPorNombreLike(@PathVariable String patron) {
+		ResponseEntity<?> responseEntity = null; // esto representa el mensaje http de vuelta
+		Iterable<Alumno> iterable_alumnos = null;
+
+		log.debug("entrando en buscarPorNombreLike " + patron );
+		iterable_alumnos = this.alumnoService.findByNombreLike(patron);
+		responseEntity = ResponseEntity.ok(iterable_alumnos);// esto genera un HTTP con Status 200 y en el body, la
+		log.debug("saliendo de buscarPorNombreLike " + iterable_alumnos);											// lista
+
+		return responseEntity;
+	}
+	
+	@GetMapping("/buscarPorRangoEdad/{min}/{max}") //http://localhost:8080/alumno/buscarPorRangoEdad/{min,max} se hace un GET
+	public ResponseEntity<?> listarAlumnosPorRangoEdad(@PathVariable int min, @PathVariable int max ) {
+		ResponseEntity<?> responseEntity = null;
+		Iterable<Alumno> iterable_alumnos = null;
+		
+		log.debug("entrando en buscarPorRangoEdad entre " + min + " y " + max);
+		iterable_alumnos = this.alumnoService.findByEdadBetween(min, max);
+		
+		responseEntity = ResponseEntity.ok(iterable_alumnos); //esto genera un HTTP con status 200 y con el body iterable_alumnos
+		log.debug("saliendo de buscarPorRangoEdad " + iterable_alumnos);
+		
+			
+		return responseEntity;
+	}
+	
+	@GetMapping("/buscarPorNombreOApellidoLike/{patron}") // http://localhost:8081/alumno/buscarPorNombreLike/p GET
+	public ResponseEntity<?> buscarPorNombreOApellidoLike(@PathVariable String patron) {
+		ResponseEntity<?> responseEntity = null; // esto representa el mensaje http de vuelta
+		Iterable<Alumno> iterable_alumnos = null;
+
+		log.debug("entrando en buscarPorNombreOApellidoLike " + patron );
+		iterable_alumnos = this.alumnoService.busquedaPorNombreOApellidoNativa(patron);
+		responseEntity = ResponseEntity.ok(iterable_alumnos);// esto genera un HTTP con Status 200 y en el body, la
+		log.debug("saliendo de buscarPorNombreOApellidoLike " + iterable_alumnos);											// lista
+
+		return responseEntity;
+	}
+	
+	@GetMapping("/obtenerAlumnosAltaHoy") // http://localhost:8081/alumno/obtenerAlumnosAltaHoy GET
+	public ResponseEntity<?> listarAlumnosRegistradosHoy() {
+		ResponseEntity<?> responseEntity = null; // esto representa el mensaje http de vuelta
+		Iterable<Alumno> iterable_alumnos = null;
+
+		iterable_alumnos = this.alumnoService.procediminetoAlumnosAltaHoy();
+		responseEntity = ResponseEntity.ok(iterable_alumnos);// esto genera un HTTP con Status 200 y en el body, la
+																// lista
+
+		return responseEntity;
+	}
+
+	
 
 }

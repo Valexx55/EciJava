@@ -24,5 +24,21 @@ public interface AlumnoService {
 	//actualizar
 	
 	public Alumno actualizar (Alumno alumno, Long id);
+	
+	//buscar por Nombre Like
+	
+	public Iterable<Alumno> findByNombreLike (String patron);
 
+
+	//buscar por edad en rango
+	
+	public Iterable<Alumno> findByEdadBetween(int edad_min, int edad_max);
+	
+	//buscamos por nombre o apellido nativa
+	
+	public Iterable<Alumno> busquedaPorNombreOApellidoNativa (String patron);
+	
+	//LISTAMOS los alumnos dados de alta hoy
+	
+	public Iterable<Alumno> procediminetoAlumnosAltaHoy ();
 }
