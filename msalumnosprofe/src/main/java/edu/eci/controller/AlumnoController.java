@@ -8,6 +8,7 @@ import javax.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
@@ -183,13 +184,29 @@ public class AlumnoController {
 		return responseEntity;
 	}
 	
-	@GetMapping("/buscarPorNombreOApellidoLike/{patron}") // http://localhost:8081/alumno/buscarPorNombreLike/p GET
-	public ResponseEntity<?> buscarPorNombreOApellidoLike(@PathVariable String patron) {
+	
+	@GetMapping("/buscarPorRangoEdadPag/{min}/{max}") //http://localhost:8080/alumno/buscarPorRangoEdad/{min}/{max}?page=0&size=3se hace un GET
+	public ResponseEntity<?> listarAlumnosPorRangoEdadPag(@PathVariable int min, @PathVariable int max, Pageable pageable ) {
+		ResponseEntity<?> responseEntity = null;
+		Iterable<Alumno> iterable_alumnos = null;
+		
+		log.debug("entrando en buscarPorRangoEdad entre " + min + " y " + max);
+		iterable_alumnos = this.alumnoService.findByEdadBetween(min, max, pageable);
+		
+		responseEntity = ResponseEntity.ok(iterable_alumnos); //esto genera un HTTP con status 200 y con el body iterable_alumnos
+		log.debug("saliendo de buscarPorRangoEdad " + iterable_alumnos);
+		
+			
+		return responseEntity;
+	}
+	
+	@GetMapping("/buscarPorNombreOApellidoLikePag/{patron}") // http://localhost:8081/alumno/buscarPorNombreLike/p?size=3&page=0 GET
+	public ResponseEntity<?> buscarPorNombreOApellidoLikePag(@PathVariable String patron, Pageable pageable) {
 		ResponseEntity<?> responseEntity = null; // esto representa el mensaje http de vuelta
 		Iterable<Alumno> iterable_alumnos = null;
 
 		log.debug("entrando en buscarPorNombreOApellidoLike " + patron );
-		iterable_alumnos = this.alumnoService.busquedaPorNombreOApellidoNativa(patron);
+		iterable_alumnos = this.alumnoService.busquedaPorNombreOApellidoNativaPag(patron, pageable);
 		responseEntity = ResponseEntity.ok(iterable_alumnos);// esto genera un HTTP con Status 200 y en el body, la
 		log.debug("saliendo de buscarPorNombreOApellidoLike " + iterable_alumnos);											// lista
 
@@ -208,6 +225,30 @@ public class AlumnoController {
 		return responseEntity;
 	}
 
+	@GetMapping("/pagina") // http://localhost:8081/alumno/pagina?page=0&size=2 GET
+	public ResponseEntity<?> listarPorPagina(Pageable pageable) {
+		ResponseEntity<?> responseEntity = null; // esto representa el mensaje http de vuelta
+		Iterable<Alumno> iterable_alumnos = null;
+
+		iterable_alumnos = this.alumnoService.leerAlumnosPorPagina(pageable);
+		responseEntity = ResponseEntity.ok(iterable_alumnos);// esto genera un HTTP con Status 200 y en el body, la
+																// lista
+
+		return responseEntity;
+	}
+	
+	@GetMapping("/buscarPorNombreOApellidoLikePaginado/{patron}") // http://localhost:8081/alumno/buscarPorNombreOApellidoLikePaginado/p?size=0&page=5 GET
+	public ResponseEntity<?> buscarPorNombreOApellidoLikePaginado(@PathVariable String patron, Pageable pageable) {
+		ResponseEntity<?> responseEntity = null; // esto representa el mensaje http de vuelta
+		Iterable<Alumno> iterable_alumnos = null;
+
+		log.debug("entrando en buscarPorNombreOApellidoLikePaginado " + patron );
+		iterable_alumnos = this.alumnoService.busquedaPorNombreOApellidoPaginado(patron, pageable);
+		responseEntity = ResponseEntity.ok(iterable_alumnos);// esto genera un HTTP con Status 200 y en el body, la
+		log.debug("saliendo de buscarPorNombreOApellidoLikePaginado " + iterable_alumnos);											// lista
+
+		return responseEntity;
+	}
 	
 
 }
