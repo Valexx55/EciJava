@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.NamedStoredProcedureQueries;
 import javax.persistence.NamedStoredProcedureQuery;
 import javax.persistence.PrePersist;
@@ -18,6 +19,10 @@ import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import io.swagger.v3.oas.models.security.SecurityScheme.In;
 
 @Entity // esta clase está asociada a un tabla
 @Table(name = "alumnos")
@@ -52,15 +57,44 @@ public class Alumno {
 	@Column(name = "creado_en") // especificamos un nombre de columna distinto
 	@Temporal(TemporalType.TIMESTAMP) // le decimos que almacene la fecha con esa precisión
 	private Date creadoEn;
+	
+	@Lob//large object binary - guardar un archivo en base de datos
+	@JsonIgnore //así evitamos que este campo se serialice en la respuesta
+	private byte[] foto;
+	
+	//este método genera un "indicativo"/flag
+	//de modo que si el alumno tiene foto en la base de datos
+	//, devovlemos algo
+	//si no, null
+	public Integer getFotoHashCode ()
+	{
+		Integer idev = null;
+			
+			if (this.foto!=null)
+			{
+				idev = this.foto.hashCode();
+			}
+		
+		return idev;
+	}
 
-	@PrePersist // el método así anotado se ejecuta automáticamente al guardar el
-				// objeto/registro en la bd
+	@PrePersist // el método así anotado se ejecuta automáticamente al guardar el// objeto/registro en la bd
 	private void generarFechaCreacion() {
 		this.creadoEn = new Date();
 	}
 
 	public Alumno() {
 		// TODO Auto-generated constructor stub
+	}
+	
+	
+
+	public byte[] getFoto() {
+		return foto;
+	}
+
+	public void setFoto(byte[] foto) {
+		this.foto = foto;
 	}
 
 	public Alumno(Long id, String nombre, String apellido, int edad, String email, Date creadoEn) {

@@ -56,6 +56,11 @@ public class AlumnoServiceImpl implements AlumnoService {
 					alumno_leido.setEmail(alumno.getEmail());
 					alumno_leido.setEdad(alumno.getEdad());
 					
+					if (alumno.getFoto()!=null)
+					{
+						alumno_leido.setFoto(alumno.getFoto());
+					}
+					
 					alumnno_modificado = alumno_leido;
 					 
 				}
