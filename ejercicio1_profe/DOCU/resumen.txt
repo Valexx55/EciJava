@@ -64,4 +64,20 @@ tenemos:
 		del servidor
 	- CONTEXTO/APLICACIÓN: Se crea al levantar la app 
 	en el contenedor y se destruye al detenerse	
+
+SPRING
+	"lo hace todo"
+	@Controller / @RestController - Controlador - CAPA API WEB "karl"
+	@Service - Interfaz
+	@Respository - SpringData CrudRepository, PagingAndSorting
+	Spring data = (JPA - Hibernate (implementación)) + extras tipo CrudRepository, KeyWord
+	@Entity, @Table, @Column, @NamedStoreProcedure
+	
+	OPEN APi - Estándar- Swagger - SpringDoc
+	POA - Transactional, Anotaciones, @ControllerAdvice / @RestControllerAdvice (Excepciones)
+	@GetMapping / @Post/@Put/@Delete
+	@Valid - Estándar Bean Validation
+	@PathVarible @RequestParam @RequestBody - para procesar la info recibida en las peticiones
+	
+	CORS
 	
