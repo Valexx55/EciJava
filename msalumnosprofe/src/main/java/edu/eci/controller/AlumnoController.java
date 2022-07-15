@@ -33,6 +33,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import edu.eci.model.FraseChuckNorris;
 import edu.eci.repository.entity.Alumno;
+import edu.eci.repository.entity.Curso;
 import edu.eci.service.AlumnoService;
 
 
@@ -382,5 +383,24 @@ public class AlumnoController {
 		return responseEntity;
 	}
 	
+	
+	@GetMapping("/dame-curso-via-mscursos/{id}") 
+	public ResponseEntity<?> obtenerCursoAlumnoFeign(@PathVariable Long id) {
+		ResponseEntity<?> responseEntity = null;
+		Optional<Curso> ofc = null;
+		Curso curso = null;
+
+		log.debug("obtenerCursoAlumnoFeign ()");
+		ofc = this.alumnoService.obtenerCursoNativa(id);
+		if (ofc.isPresent()) {
+			curso = ofc.get();
+			responseEntity = ResponseEntity.ok(curso);
+		} else {
+			// el alumno no estaba asociado a ningun curso
+			responseEntity = ResponseEntity.noContent().build();
+		}
+
+		return responseEntity;// este es el mensaje HTTP de vuelta
+	}
 
 }

@@ -9,15 +9,20 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.client.RestTemplate;
 
+import edu.eci.cli.CursoFeignClient;
 import edu.eci.model.FraseChuckNorris;
 import edu.eci.repository.AlumnoRepository;
 import edu.eci.repository.entity.Alumno;
+import edu.eci.repository.entity.Curso;
 
 @Service
 public class AlumnoServiceImpl implements AlumnoService {
 	
 	@Autowired
 	private AlumnoRepository alumnoRepository;
+	
+	@Autowired
+	private CursoFeignClient cursoFeignClient;
 
 	@Override
 	@Transactional (readOnly = true)
@@ -131,6 +136,11 @@ public class AlumnoServiceImpl implements AlumnoService {
 			ofc = Optional.of(fraseChuckNorris);
 			
 		return ofc;
+	}
+	
+	@Override
+	public Optional<Curso> obtenerCursoNativa(Long idalumno) {
+		return this.cursoFeignClient.obtenerCursoNativa(idalumno);
 	}
 
 }

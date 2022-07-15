@@ -7,6 +7,7 @@ import org.springframework.data.domain.Pageable;
 
 import edu.eci.model.FraseChuckNorris;
 import edu.eci.repository.entity.Alumno;
+import edu.eci.repository.entity.Curso;
 
 public interface AlumnoService {
 	
@@ -57,4 +58,7 @@ public interface AlumnoService {
 	
 	//Obtenemos una frase de un servidor externo
 	public Optional<FraseChuckNorris> obtenerFraseChuckAleatoria();
+	
+	//obtenemos a qué curso está asignado un alumno vía consulta micro servicio cursos
+	public Optional<Curso> obtenerCursoNativa (Long idalumno);
 }

@@ -91,7 +91,7 @@ public class Curso {
 		this.alumnos = new ArrayList<Alumno>();
 	}
 	
-	public void addALumno (Alumno alumno)
+	public void addAlumno (Alumno alumno)
 	{
 		this.alumnos.add(alumno);
 	}
