@@ -5,6 +5,7 @@ import java.util.Optional;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
+import edu.eci.model.FraseChuckNorris;
 import edu.eci.repository.entity.Alumno;
 
 public interface AlumnoService {
@@ -53,4 +54,7 @@ public interface AlumnoService {
 	
 	//LISTAR alumnos por páginas/bloques de la BD con consulta
 	public Page<Alumno> busquedaPorNombreOApellidoPaginado (String patron, Pageable pageable);
+	
+	//Obtenemos una frase de un servidor externo
+	public Optional<FraseChuckNorris> obtenerFraseChuckAleatoria();
 }

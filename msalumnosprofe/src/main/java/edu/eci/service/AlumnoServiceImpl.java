@@ -7,7 +7,9 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.client.RestTemplate;
 
+import edu.eci.model.FraseChuckNorris;
 import edu.eci.repository.AlumnoRepository;
 import edu.eci.repository.entity.Alumno;
 
@@ -115,6 +117,20 @@ public class AlumnoServiceImpl implements AlumnoService {
 	public Page<Alumno> busquedaPorNombreOApellidoPaginado(String patron, Pageable pageable) {
 		
 		return this.alumnoRepository.busquedaPorNombreOApellidoPaginado(patron, pageable);
+	}
+
+	@Override
+	public Optional<FraseChuckNorris> obtenerFraseChuckAleatoria() {
+		Optional<FraseChuckNorris> ofc = Optional.empty();
+		FraseChuckNorris fraseChuckNorris = null;
+		RestTemplate restTemplate = null;
+			
+			restTemplate = new RestTemplate();
+			//https://api.chucknorris.io/jokes/random
+			fraseChuckNorris = restTemplate.getForObject("https://api.chucknorris.io/jokes/random", FraseChuckNorris.class);
+			ofc = Optional.of(fraseChuckNorris);
+			
+		return ofc;
 	}
 
 }

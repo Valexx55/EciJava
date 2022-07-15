@@ -12,12 +12,18 @@ spring:
               allowedMethods: "*"
               allowedHeaders: "*"
      routes:
-      - id: msalumnos 
-        uri: lb://msalumnos
+      - id: msalumnosprofe 
+        uri: lb://msalumnosprofe
         predicates:
           - Path=/api/alumnos/**
         filters:
           - RewritePath=/api/alumnos/*, /alumno/
+      - id: mscursosprofe 
+        uri: lb://mscursosprofe
+        predicates:
+          - Path=/api/cursos/**
+        filters:
+          - RewritePath=/api/cursos/*, /curso/
 server:
   port: 8090
 eureka:

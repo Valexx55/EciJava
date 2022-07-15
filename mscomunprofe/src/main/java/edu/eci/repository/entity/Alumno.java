@@ -22,7 +22,6 @@ import javax.validation.constraints.Size;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import io.swagger.v3.oas.models.security.SecurityScheme.In;
 
 @Entity // esta clase está asociada a un tabla
 @Table(name = "alumnos")
@@ -161,4 +160,22 @@ public class Alumno {
 		this.creadoEn = creadoEn;
 	}
 
+	@Override
+	public boolean equals(Object obj) {
+		boolean iguales = false;
+		
+			if (this == obj)
+			{
+				iguales = true;
+			} else if (!(obj instanceof Alumno))
+			{
+				iguales = false;
+			} else {
+				Alumno alumno_aux = (Alumno) obj;
+				iguales = ((this.id!=null)&&(this.id.equals(alumno_aux.id)));
+			}
+		
+		
+		return iguales;
+	}
 }

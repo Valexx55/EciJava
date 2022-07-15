@@ -9,6 +9,8 @@ import javax.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.env.Environment;
 import org.springframework.core.io.ByteArrayResource;
 import org.springframework.core.io.Resource;
 import org.springframework.data.domain.Pageable;
@@ -29,6 +31,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+import edu.eci.model.FraseChuckNorris;
 import edu.eci.repository.entity.Alumno;
 import edu.eci.service.AlumnoService;
 
@@ -46,6 +49,13 @@ public class AlumnoController {
 	// ACTUALIZAR - PUT
 	// BORRAR - DELETE
 
+	//con esta anotación, puedo acceder al valor de una propiedad declarada en el properties
+	@Value("${instancia}")
+	String nombre_instancia;
+	
+	@Autowired // lo uso para acceder a la IP
+	Environment environment;
+	
 	@Autowired // Inject en estándar
 	private AlumnoService alumnoService;
 	
@@ -69,6 +79,7 @@ public class AlumnoController {
 		ResponseEntity<?> responseEntity = null; // esto representa el mensaje http de vuelta
 		Iterable<Alumno> iterable_alumnos = null;
 
+		log.debug("ATENDIDO POR " + this.nombre_instancia + " PUERTO " + this.environment.getProperty("local.server.port"));
 		iterable_alumnos = this.alumnoService.recuperarTodos();
 		responseEntity = ResponseEntity.ok(iterable_alumnos);// esto genera un HTTP con Status 200 y en el body, la
 																// lista
@@ -349,6 +360,24 @@ public class AlumnoController {
 		iterable_alumnos = this.alumnoService.busquedaPorNombreOApellidoNativaPag(patron, pageable);
 		responseEntity = ResponseEntity.ok(iterable_alumnos);// esto genera un HTTP con Status 200 y en el body, la
 		log.debug("saliendo de buscarPorNombreOApellidoLike " + iterable_alumnos);											// lista
+
+		return responseEntity;
+	}
+	
+	@GetMapping("/obtener-frase-chuck") // http://localhost:8081/alumno/buscarPorNombreLike/p?size=3&page=0 GET
+	public ResponseEntity<?> obtenerFraseChuck() {
+		ResponseEntity<?> responseEntity = null; // esto representa el mensaje http de vuelta
+		Optional<FraseChuckNorris> ofc = null;
+
+		ofc = this.alumnoService.obtenerFraseChuckAleatoria();
+		if (ofc.isPresent())
+		{
+			FraseChuckNorris fc = ofc.get();
+			responseEntity = ResponseEntity.ok(fc);
+		}
+		else {
+			responseEntity = ResponseEntity.noContent().build();
+		}
 
 		return responseEntity;
 	}
